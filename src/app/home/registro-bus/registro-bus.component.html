@@ -1,0 +1,65 @@
+
+<div class="card">
+<p-dataView #dv [value]="buses" [paginator]="true" [rows]="20"   layout="grid">
+
+<p-header>
+    <div class="ui-helper-clearfix">
+        
+            
+       
+        <div class="p-grid">
+            
+                <div class="flex align-items-center text-primary">
+                    <span class="fa-solid fa-bus mr-2"></span>
+                    <span class="font-bold text-lg">Registro de Buses</span>
+                </div>
+           
+            <div class="p-col-6 p-md-4 flex" style="justify-content: end;">
+                <p-button class="mr-5" (click)="showDialog(true)" icon="pi pi-plus" label="Añadir" [outlined]="true" severity="success"></p-button>
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </div>
+    </div>
+</p-header>
+<ng-template let-car pTemplate="listItem">
+    <div class="p-col-12">
+        <div class="car-details">
+            <div>
+                <div class="p-grid">
+                    <div class="p-col-12">Vin: <b>{{car.modelo}}</b></div>
+                    <div class="p-col-12">Year: <b>{{car.marca}}</b></div>
+                    <div class="p-col-12">Brand: <b>{{car.placa}}</b></div>
+                
+                </div>
+            </div>
+            <button pButton type="button" icon="pi pi-search"></button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template let-car pTemplate="gridItem">
+    <div style="padding:.5em; flex: 1 0 calc(25% - 10px);" class="p-col-6 p-md-4">
+        <p-panel [header]="car.marca" [style]="{'text-align':'center'}">
+            <div class="car-detail">Placa: {{car.placa}} </div>
+            <div class="car-detail">Marca: {{car.marca}}</div>
+            <div class="car-detail">Modelo: {{car.modelo}}</div>
+            <div class="car-detail">Asientos: {{car.asientos.length}}</div>
+            <p-button (click)="showEditingDialog(true,car._id)" label="" icon="pi pi-pencil"></p-button>
+            <p-toast></p-toast>
+            <p-confirmDialog key="{{car._id}}" [style]="{width: '50vw'}"></p-confirmDialog>
+            <p-button (click)="deleteBus(car._id)" icon="pi pi-trash" label="" class="p-button-danger" severity="danger"></p-button>
+            <!-- <p-button (click)="" label=""  icon="pi pi-trash"  severity="danger"></p-button> -->
+            
+        </p-panel>
+    </div>
+</ng-template>
+</p-dataView>
+<div class="card flex justify-content-center">
+       
+    <p-dialog [header]="busEditar?'Editar Bus':'Registar Bus'" [(visible)]="visible" [style]="{ width: '50vw', height: '500px' }">
+        <div class="flex py-2 justify-content-center  align-items-center">
+            <menu-registro-bus [busEditar]="busEditar" (busUpdating)="busUpdating()" (busCreation)="busCreation(false)"></menu-registro-bus>
+        </div>
+    </p-dialog>
+</div>
+</div>

@@ -1,0 +1,14 @@
+.contenedor {
+  width: 100%;
+  background-color:  white;
+   display: grid;
+   grid-template-columns:  8% 8% 10% 8% 8% ;
+   margin: 0 auto;
+   justify-content: space-evenly;
+  padding: 20px;
+  }
+  .boton-rojo {
+    background-color: red; /* Cambia el color según tus preferencias */
+    color: white; /* Cambia el color del texto si es necesario */
+  }
+

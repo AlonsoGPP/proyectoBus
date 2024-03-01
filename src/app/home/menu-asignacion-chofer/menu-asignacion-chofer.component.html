@@ -1,0 +1,30 @@
+<form [formGroup]="choferAsinacionForm" (submit)="emitChofer()">
+      
+    <div class="field">
+     <!-- <label for="chofer">Chofer</label>
+     <p-dropdown formControlName="_id" [options]="choferes"  placeholder="Select a chofer">
+        <ng-template pTemplate="selectedItem">
+            <div class="flex align-items-center gap-2" *ngIf="choferSelected">
+               
+                <div>{{ choferSelected.nombres }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-chofer pTemplate="item">
+            <div (click)="setSelectedChofer(chofer.nombres, chofer._id)" class="flex align-items-center gap-2">
+                <div>{{ chofer.nombres }}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+     -->
+    
+    <p-toast></p-toast>
+
+    <label for="chofer">Chofer</label>
+<select formControlName="_id" class="caja" name="chofer" id="choferid">
+    <option value="default">Seleccione</option>
+    <option *ngFor="let chofer of choferes" value="{{chofer._id}}">{{chofer.nombres}}</option>
+</select>
+</div>
+    <p-button type="submit" label="Registrar" ></p-button>
+
+</form>

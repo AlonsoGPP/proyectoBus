@@ -1,0 +1,88 @@
+
+<div class="card">
+    <p-dataView #dv [value]="buses" [paginator]="true" [rows]="20"   layout="grid">
+    
+    <p-header>
+        <div class="ui-helper-clearfix">
+            
+                
+           
+            <div class="p-grid">
+                
+                    <div class="flex align-items-center text-primary">
+                        <span class="fa-regular fa-calendar mr-2"></span>
+                        <span class="font-bold text-lg">Registro de Itinerario</span>
+                    </div>
+                    <div >
+                    <form [formGroup]="itinerarioForm" (submit)="createItinerario()">
+                        <div class="flex justify-content-center ">
+                            <label for="fecha"> Fecha Ingreso</label>
+                            <p-calendar formControlName="fechaIti"  (onSelect)="onSelectDate($event)" appendTo="body"  ></p-calendar>
+                            <p-button *ngIf="rolUser==='admin'" type="submit" icon="pi pi-plus" label="Crear" [rounded]="true" severity="info"></p-button>
+                            <p-button icon="pi pi-search" (click)="cargarBusesDeItinerario()" label="Buscar" [rounded]="true" severity="success"></p-button>
+                        </div>
+                    </form>
+                   </div>
+                   <div *ngIf="itinerarioAsignado!=undefined" class="justify-content-start">
+                    <p-tag *ngIf="!itinerarioAsignado" icon="pi pi-info-circle" severity="info" value="Fecha libre: use: Crear"></p-tag>
+                    <p-tag *ngIf="itinerarioAsignado" icon="pi pi-exclamation-triangle" severity="warning" value="Warning: Este Dia Ya tiene un Itinerario: Use Buscar"></p-tag>
+                   </div>
+                <div class="p-col-6 p-md-4 flex" style="justify-content: end;">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-car pTemplate="listItem">
+        <div class="p-col-12">
+            <div class="car-details">
+                <div>
+                    <div class="p-grid">
+                        <div class="p-col-12">Vin: <b>{{car.modelo}}</b></div>
+                        <div class="p-col-12">Year: <b>{{car.marca}}</b></div>
+                        <div class="p-col-12">Brand: <b>{{car.placa}}</b></div>
+                    
+                    </div>
+                </div>
+                <button pButton type="button" icon="pi pi-search"></button>
+            </div>
+        </div>
+    </ng-template>
+    
+    <ng-template let-car pTemplate="gridItem">
+        <div style="padding:.5em; flex: 1 0 calc(25% - 10px);" class="p-col-6 p-md-4">
+            <p-panel [header]="car.marca">
+                <p-tag *ngIf="car.chofer" [style]="{'justify-content':'start'}" icon="pi pi-check" severity="success" value="Chofer"></p-tag>
+                <div style="text-align:center">
+                <div class="car-detail">Placa: {{car.placa}} </div>
+                <div class="car-detail">Marca: {{car.marca}}</div>
+                <div class="car-detail">Modelo: {{car.modelo}}</div>
+                <div class="car-detail">Asientos: {{car.asientos.length}}</div>
+                <p-button (click)="showModalChoferAsing(true, car._id)" label="Chofer" icon="fa-regular fa-id-card"></p-button>
+                <p-button (click)="openSeatsView(car._id)" label="Ver Asiento"  icon="fa-solid fa-couch"  severity="danger"></p-button>
+            </div>
+            </p-panel>
+        </div>
+    </ng-template>
+    </p-dataView>
+    <!-- modal-registro-chofer -->
+    <div class="card flex justify-content-center">
+           
+        <p-dialog header="Registro Bus" [(visible)]="visible" [style]="{ width: '50vw', height: '500px' }">
+            <div class="flex py-2 justify-content-center  align-items-center">
+                <app-menu-asignacion-chofer [busInfo]="busInfo" (onChoferDesinacion)="asignarChofer($event)"></app-menu-asignacion-chofer>
+            </div>
+        </p-dialog>
+    </div>
+    <!-- modal vistaDeAsientos -->
+    <div class="card flex justify-content-center">
+           
+        <p-dialog header="Registro Bus" [(visible)]="visibleAsientos" [style]="{ width: '50vw', height: '500px' }">
+            <div >
+                <vista-asientos (onPassangerChange)="updateItinerarioPassanger($event)"></vista-asientos>
+            </div>
+        </p-dialog>
+    </div>
+    </div>
+
+    

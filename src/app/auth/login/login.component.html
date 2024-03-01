@@ -1,0 +1,22 @@
+<div class="flex justify-content-center align-items-center" style="height: 100vh;">
+<form [formGroup]="loginForm" (submit)="doLogin()">
+    <p-card header="Login" [style]="{width:'400px'}">
+       <div class="field">
+        <label for="email">Email</label>
+        <input type="text" pInputText formControlName="email" class="w-full" name="email" placeholder="Type email"/>
+        <small *ngIf="this.isnotValid('email')" class="block p-error">
+            {{this.getMessageEr('email')}}
+        </small>
+       </div>
+       <div class="field">
+            <label for="password"> Password</label>
+            <input type="password" pInputText formControlName="password" class="w-full" name="password" placeholder="Type password"/>
+            <small *ngIf="this.isnotValid('password')" class="block p-error">
+                {{this.getMessageEr('password')}}
+            </small>
+       </div>
+       <p-toast></p-toast>
+       <p-button type="submit" label="Sign in" styleClass="w-full"></p-button>
+    </p-card>
+</form>
+</div>

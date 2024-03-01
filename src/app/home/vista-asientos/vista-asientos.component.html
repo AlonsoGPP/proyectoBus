@@ -1,0 +1,46 @@
+<div class="contenedor">
+<ng-container *ngFor="let asiento of asientos; let i=index">
+       
+        <ng-container *ngIf="i%2==0 && i!=0 && !(i%4==0)"> 
+            <div style="width: 15px;"> </div>
+        </ng-container>
+        
+    <div style="text-align: center;" >
+        <p-button (click)="setAsiento(asiento._id!)" [outlined]="true" [severity]="asiento.pasajero!=undefined ? 'danger' : 'info'">
+            <img alt="logo" src="../../../assets/seat.png" style="width: 1.5rem" />
+            <span class="ml-2 font-bold"></span>
+        </p-button>
+    </div>
+   
+    
+  
+</ng-container>
+
+</div>
+<div class="card flex justify-content-center">
+           
+    <p-dialog appendTo="body" header="Registro Bus" [(visible)]="modalInfoAsiento" [style]="{ width: '50vw', height: '500px' }">
+        <div >
+          <form [formGroup]="pasajeroRegister" (submit)="registrarPasajero()">
+            <div class="field">
+                <label for="email">DNI</label>
+                <input type="text" pInputText formControlName="dni" class="w-full" name="dni" placeholder="Type email"/>
+                <small *ngIf="this.isnotValid('dni')" class="block p-error">
+                    {{this.getMessageEr('dni')}}
+                </small>
+               </div>
+               <div class="field">
+                <label for="nombres"> NOMBRES</label>
+                <input type="nombres" pInputText formControlName="nombres" class="w-full" name="nombres" placeholder="Type password"/>
+                <small *ngIf="this.isnotValid('nombres')" class="block p-error">
+                    {{this.getMessageEr('nombres')}}
+                </small>
+           </div>
+           <p-toast></p-toast>
+           <p-button type="submit" label="Registrar" ></p-button>
+           <p-button (click)="this.modalInfoAsiento=false"  type="button" label="Cancelar" ></p-button>
+           <p-button  *ngIf="botonLiberar" class=" flex justify-content-end" severity="danger" (click)="liberarAsiento(idAsiento)"  type="button" label="Liberar" ></p-button>
+          </form>
+        </div>
+    </p-dialog>
+</div>

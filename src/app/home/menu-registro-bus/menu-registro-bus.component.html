@@ -1,0 +1,39 @@
+<form [formGroup]="busRegisterForm" (submit)="busEditar? editarBus():registroBus()">
+      
+    <div class="field">
+     <label for="placa">Placa</label>
+     <input type="text" pInputText formControlName="placa" class="w-full" name="placa" placeholder="Type email"/>
+     <small *ngIf="this.isnotValid('placa')" class="block p-error">
+         {{this.getMessageEr('placa')}}
+     </small>
+    </div>
+    <div class="field">
+         <label for="modelo"> Modelo</label>
+         <input type="text" pInputText formControlName="modelo" class="w-full" name="modelo" placeholder="Type password"/>
+         <small *ngIf="this.isnotValid('modelo')" class="block p-error">
+             {{this.getMessageEr('modelo')}}
+         </small>
+    </div>
+    <div  class="field">
+     <label for="marca"> Marca</label>
+     <input type="text" pInputText formControlName="marca" class="w-full" name="marca" placeholder="Type email"/>
+     <small *ngIf="this.isnotValid('marca')" class="block p-error">
+         {{this.getMessageEr('marca')}}
+     </small>
+</div>
+<div class="field">
+    <label for="numeroAsients"> Num Asientos</label>
+    <input type="number" pInputText formControlName="numeroAsientos" class="w-full" name="numeroAsientos" placeholder="Type password"/>
+    <small *ngIf="this.isnotValid('numeroAsientos')" class="block p-error">
+        {{this.getMessageEr('numeroAsientos')}}
+    </small>
+</div>
+<div class="flex field">
+    <label for="foto"> Imagen</label>
+    <p-fileUpload  mode="basic" chooseLabel="Choose" name="demo[]"  accept="image/*" [maxFileSize]="1000000"></p-fileUpload> 
+    
+</div>
+    <p-toast></p-toast>
+    <p-button type="submit" label="Registrar" ></p-button>
+ 
+</form>

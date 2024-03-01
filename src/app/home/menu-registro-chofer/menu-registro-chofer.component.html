@@ -1,0 +1,33 @@
+
+
+    <form [formGroup]="choferRegisterForm" (submit)="editingChofer?editarChofer(): registroChofer()">
+     
+           <div class="field">
+            <label for="email">DNI</label>
+            <input type="text" pInputText formControlName="dni" class="w-full" name="dni" placeholder="Type email"/>
+            <small *ngIf="this.isnotValid('dni')" class="block p-error">
+                {{this.getMessageEr('dni')}}
+            </small>
+           </div>
+           <div class="field">
+                <label for="nombres"> NOMBRES</label>
+                <input type="nombres" pInputText formControlName="nombres" class="w-full" name="nombres" placeholder="Type password"/>
+                <small *ngIf="this.isnotValid('nombres')" class="block p-error">
+                    {{this.getMessageEr('nombres')}}
+                </small>
+           </div>
+           <div >
+            <label for="fecha"> Fecha Ingreso</label>
+            <div class="flex justify-content-center ">
+                <p-calendar appendTo="body"  formControlName="fechaIngreso" ></p-calendar>
+            </div>
+            <small *ngIf="this.isnotValid('fechaIngreso')" class="block p-error">
+                {{this.getMessageEr('fechaIngreso')}}
+            </small>
+       </div>
+           <p-toast></p-toast>
+           <p-button type="submit" [label]="editingChofer?'Editar':'Registrar'" ></p-button>
+        
+    </form>
+
+    

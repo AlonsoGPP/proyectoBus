@@ -1,0 +1,35 @@
+<div class="card">
+    <p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{  'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
+        <div class="p-toolbar-group-start">
+            <img src="../../../assets/bussmall.png" />
+        </div>
+        <div class="p-toolbar-group-center">
+            <div class="flex flex-wrap align-items-center gap-8">
+               <ng-container *ngIf="rol==='admin'"> 
+                <button (click)="loadPage('registro-bus')" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"><i class="fa-solid fa-bus mr-3"></i>Registro Bus</button>
+                <button (click)="loadPage('registro-chofer')" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"><i class="fa-regular fa-id-card mr-3"></i>Registro Chofer</button>
+                <button (click)="loadPage('registro-usuario')" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"><i class="fa-solid fa-users mr-3"></i>Registro Usuarios</button></ng-container>
+               <ng-container *ngIf="rol==='admin'||rol==='usuario' ">
+                  <button (click)="loadPage('registro-itinerario')" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"><i class="fa-regular fa-calendar mr-3"></i>Itinerario de Viaje</button>
+            </ng-container>
+            </div>
+            
+        </div>
+        <div class="p-toolbar-group-end">
+            <!-- <div class="flex align-items-center gap-2">
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                <span class="font-bold text-bluegray-50">Amy Elsner</span>
+            </div> -->
+                
+                 <p-menu #menu [model]="items" [popup]="true"></p-menu>
+                <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="{{this.logdata.username}}"></button>
+                <div clas="align-items-end">
+                <!-- <p-button (click)="logout()" severity="danger" label="Salir" ></p-button> -->
+            </div> 
+        </div>
+    </p-toolbar>
+    </div>
+    
+ <div class="container">
+    <router-outlet></router-outlet>
+</div>

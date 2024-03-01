@@ -1,0 +1,42 @@
+<form [formGroup]="userRegisterForm" (submit)="editingUser? editarUser():registroUser()">
+      
+    <div class="field">
+     <label for="email">DNI</label>
+     <input type="text" pInputText formControlName="dni" class="w-full" name="dni" placeholder="Type email"/>
+     <small *ngIf="this.isnotValid('dni')" class="block p-error">
+         {{this.getMessageEr('dni')}}
+     </small>
+    </div>
+    <div class="field">
+         <label for="nombres"> NOMBRES</label>
+         <input type="nombres" pInputText formControlName="nombres" class="w-full" name="nombres" placeholder="Type password"/>
+         <small *ngIf="this.isnotValid('nombres')" class="block p-error">
+             {{this.getMessageEr('nombres')}}
+         </small>
+    </div>
+    <div class="field">
+        <label for="username"> Usuario</label>
+        <input type="nombres" pInputText formControlName="username" class="w-full" name="username" placeholder="Type password"/>
+        <small *ngIf="this.isnotValid('username')" class="block p-error">
+            {{this.getMessageEr('username')}}
+        </small>
+   </div>
+   <div class="field">
+    <label for="password"> Constraseña</label>
+    <input type="text" pInputText formControlName="password" class="w-full" name="password" placeholder="Type password"/>
+    <small *ngIf="this.isnotValid('password')" class="block p-error">
+        {{this.getMessageEr('password')}}
+    </small>
+</div>
+<div class="field">
+    <label for="rol"> Rol</label>
+    <input type="text" pInputText formControlName="rol" class="w-full" name="rol" placeholder="Type password"/>
+    <small *ngIf="this.isnotValid('rol')" class="block p-error">
+        {{this.getMessageEr('rol')}}
+    </small>
+</div>
+    
+
+    <p-button type="submit" label="Registrar" ></p-button>
+ 
+</form>
